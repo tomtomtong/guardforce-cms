@@ -3,7 +3,14 @@ import getS3 from '../../libs/s3Helper';
 export default async function handler(req, res) {
   const bucket = process.env.DO_SPACE_BUCKET;
   const key = process.env.DO_SPACE_ACCESS_KEY;
-  const s3 = getS3();
+  const secret = process.env.DO_SPACE_SECRET_KEY; // Ensure this is set
+  const endpoint = process.env.DO_SPACE_ENDPOINT; // Ensure this is set
+  const s3 = getS3({ 
+    accessKeyId: key, 
+    secretAccessKey: secret, 
+    endpoint, // Use the DigitalOcean endpoint
+    region: 'nyc3' // Specify the region if necessary
+  });
 
   try {
     const getResult = await s3.getObject({
