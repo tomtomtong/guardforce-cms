@@ -1,0 +1,66 @@
+.header {
+  width: 100%;
+  background: lightgrey;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 40px;
+  padding: 30px;
+  .left {
+    flex: 1;
+  }
+  .right {
+    text-align: right;
+  }
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  .left {
+    flex: 1;
+
+    .summary {
+      margin-left: 10px;
+    }
+  }
+  .right {
+  }
+}
+
+.error {
+  color: red;
+}
+
+a {
+  text-decoration: underline;
+} 
+
+.login {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  .main {
+    border: solid 1px;
+    padding: 30px;
+    margin: auto;
+    width: 500px;
+
+    .field {
+      margin: 10px;
+      input {
+	width: 70%;
+	padding: 5px;
+      }
+      button {
+	width: 70%;
+	padding: 5px;
+      }
+    }
+  }
+}
