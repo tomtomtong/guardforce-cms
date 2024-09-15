@@ -2,7 +2,7 @@ import getS3 from '../../libs/s3Helper';
 
 export default async function handler(req, res) {
   const bucket = process.env.DO_SPACE_BUCKET;
-  const key = "db.json";
+  const key = process.env.DO_SPACE_ACCESS_KEY;
   const s3 = getS3();
 
   try {
