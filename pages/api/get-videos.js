@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     accessKeyId: key, 
     secretAccessKey: secret, 
     endpoint, // Use the DigitalOcean endpoint
-    region: 'nyc3' // Specify the region if necessary
+    region: 'sgp1' // Specify the region if necessary
   });
 
   try {

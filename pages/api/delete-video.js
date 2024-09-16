@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   }
 
   const bucket = process.env.DO_SPACE_BUCKET;
-  const key = "db.json";
+  const key = process.env.DO_SPACE_ACCESS_KEY;
   const s3 = getS3();
 
   let dbContent = null;
