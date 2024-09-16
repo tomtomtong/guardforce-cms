@@ -86,7 +86,7 @@ export default function AddCategory() {
     	  <tbody>
 	    <tr>
 	      <td>Category</td>
-	      <td><input type="text" value={name} onChange={(e) => {setName(e.target.value)}}/></td>
+	      <td><input type="text" value={name} onChange={(e) => {setName(e.target.value)}} style={{ display: 'none' }} /></td>
 	    </tr>
 	    <tr>
 	      <td>Thumbnail</td>

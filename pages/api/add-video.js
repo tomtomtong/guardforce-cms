@@ -10,7 +10,6 @@ export default async function handler(req, res) {
   }
 
   const bucket = process.env.DO_SPACE_BUCKET;
-  const key = "db.json";
   const s3 = getS3();
 
   const newVideo = {
@@ -28,7 +27,7 @@ export default async function handler(req, res) {
   try {
     const getResult = await s3.getObject({
       Bucket: bucket,
-      Key: key,
+      Key: 'database.json', // Assuming this is the key for your database file
     }).promise();
     dbContent = JSON.parse(getResult.Body.toString('utf-8'));
   } catch (e) {
