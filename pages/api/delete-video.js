@@ -10,18 +10,18 @@ export default async function handler(req, res) {
   }
 
   const bucket = process.env.DO_SPACE_BUCKET;
-  const key = process.env.DO_SPACE_ACCESS_KEY;
   const s3 = getS3();
 
   let dbContent = null;
   try {
     const getResult = await s3.getObject({
       Bucket: bucket,
-      Key: key,
+      Key: 'db.json',
     }).promise();
     dbContent = JSON.parse(getResult.Body.toString('utf-8'));
   } catch (e) {
-    res.status(200).json({success: false});
+    console.log("Error fetching db.json", e); // Log the error for debugging
+    return res.status(500).json({success: false}); // Changed status code to 500 and added return
   }
 
   const toDeleteVideo = dbContent.videos.find((video) => {
