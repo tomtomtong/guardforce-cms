@@ -1,13 +1,12 @@
 import AWS from 'aws-sdk';
 
 export default function getS3() {
-  const spaceEndpoint = new AWS.Endpoint(process.env.DO_SPACE_ENDPONIT);
-  const s3 = new AWS.S3({
-    endpoint: spaceEndpoint,
-    accessKeyId: process.env.DO_SPACE_ACCESS,
-    secretAccessKey: process.env.DO_SPACE_SECRET,
-    signatureVersion: 'v4' // if not set, presignedUrl upload has cros error.... weird
+  const spacesEndpoint = new AWS.Endpoint(process.env.DO_SPACE_ENDPOINT);
+  
+  return new AWS.S3({
+    endpoint: spacesEndpoint,
+    accessKeyId: process.env.DO_SPACE_ACCESS_KEY,
+    secretAccessKey: process.env.DO_SPACE_SECRET_KEY,
+ 
   });
-
-  return s3;
 }

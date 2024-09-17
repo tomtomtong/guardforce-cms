@@ -131,8 +131,8 @@ export default function AddVideo() {
 		  ))}
     		</select>
     		&nbsp; OR &nbsp;
-    		<input type="text" placeholder="new category" value={category} onChange={(e) => {setCategory(e.target.value)}}/>
-    	      </td>
+    		{/* <input type="text" placeholder="new category" value={category} onChange={(e) => {setCategory(e.target.value)}}/> */}
+	      </td>
 	    </tr>
 	    <tr>
 	      <td>Name</td>
