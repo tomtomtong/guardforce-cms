@@ -36,6 +36,7 @@ export default async function handler(req, res) {
     if (e.name === 'NoSuchKey') { // initialize db
       dbContent = {videos: []}
     } else {
+      console.error("Error retrieving database:", e); // More detailed logging
       res.status(200).json({success: false});
       return;
     }
@@ -56,7 +57,7 @@ export default async function handler(req, res) {
     }).promise();
     res.status(200).json({success: true});
   } catch (e) {
-    console.log("save db error", e);
+    console.error("Error saving database:", e); // More detailed logging
     res.status(200).json({success: false});
     return;
   }
