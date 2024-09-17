@@ -2,6 +2,17 @@ import getS3 from '../../libs/s3Helper';
 import auth from '../../libs/auth';
 
 export default async function handler(req, res) {
+  // Add CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins or specify your frontend URL
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS'); // Allow specific methods
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allow specific headers
+
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    res.status(200).end(); // Respond to preflight request
+    return;
+  }
+
   const {token, assetId, videoURL, thumbnailURL, category, name, videoSize, thumbnailSize} = req.body;
 
   if (!auth.verify(token)) {
