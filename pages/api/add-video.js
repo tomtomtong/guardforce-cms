@@ -27,10 +27,21 @@ export default async function handler(req, res) {
   try {
     const getResult = await s3.getObject({
       Bucket: bucket,
-      Key: 'db.json', // Assuming this is the key for your database file
+      Key: 'db.json',
     }).promise();
-    dbContent = JSON.parse(getResult.Body.toString('utf-8'));
+    
+    const body = getResult.Body.toString('utf-8');
+    console.log("Retrieved data from S3:", body); // Log the retrieved data
+
+    if (body) { // Check if body is not empty
+      dbContent = JSON.parse(body);
+      console.log("Parsed JSON content:", dbContent); // Log parsed content
+    } else {
+      console.warn("Warning: Retrieved body is empty. Initializing dbContent to empty array."); // Log warning
+      dbContent = {videos: []}; // Initialize if body is empty
+    }
   } catch (e) {
+    console.error("Error retrieving or parsing db.json:", e); // Log error details
     console.log("db not found", e);
 
     if (e.name === 'NoSuchKey') { // initialize db
