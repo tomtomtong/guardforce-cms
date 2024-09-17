@@ -27,7 +27,7 @@ export default async function handler(req, res) {
   try {
     const getResult = await s3.getObject({
       Bucket: bucket,
-      Key: 'database.json', // Assuming this is the key for your database file
+      Key: 'db.json', // Assuming this is the key for your database file
     }).promise();
     dbContent = JSON.parse(getResult.Body.toString('utf-8'));
   } catch (e) {
