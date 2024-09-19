@@ -69,10 +69,12 @@ export default async function handler(req, res) {
   }
   dbContent.videos.push(newVideo);
 
+  const key = 'db.json'; // Define the key for the S3 object
+
   try {
     const putResult = await s3.putObject({
       Bucket: bucket,
-      Key: key,
+      Key: key, // Use the defined key
       Body: JSON.stringify(dbContent),
       ACL: 'public-read',
       ContentType: 'application/json'
