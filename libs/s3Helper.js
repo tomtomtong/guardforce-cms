@@ -7,6 +7,6 @@ export default function getS3() {
     endpoint: spacesEndpoint,
     accessKeyId: process.env.DO_SPACE_ACCESS_KEY,
     secretAccessKey: process.env.DO_SPACE_SECRET_KEY,
- 
+    signatureVersion: 'v4'
   });
 }
