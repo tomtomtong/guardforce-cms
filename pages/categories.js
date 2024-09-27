@@ -39,30 +39,6 @@ export default function Home() {
 
   const [deleting, setDeleting] = useState(false);
 
-  const fetchCategories = useCallback(() => {
-    axios.get('/api/get-categories').then((res) => {
-      const categories = res.data && res.data.categories || [];
-      setCategories(categories);
-      setDeleting(false);
-    });
-  }, [setCategories, setDeleting]);
-
-  const deleteCategory = useCallback(async (category) => {
-    const token = localStorage.getItem('token');
-    if (confirm("confirm delete " + category.name + "?")) {
-      setDeleting(true);
-      try {
-	const result = await axios.post('/api/delete-category', {
-	  categoryId: category.id,
-	  token
-	});
-      } catch (e) {
-	console.log("e", e);
-      }
-      fetchCategories();
-    }
-  }, [fetchCategories, setDeleting]);
-
   const totalSize = useMemo(() => {
     let sum = 0;
     categories.forEach((category) => {
@@ -76,9 +52,8 @@ export default function Home() {
     if (!token) {
       window.location.href = "/login";
     }
-    fetchCategories();
-  }, [fetchCategories]);
-  
+  }, []);
+
   return (
     <div>
       <Head>
