@@ -45,7 +45,8 @@ export default async function handler(req, res) {
     await s3.deleteObject({Bucket: bucket, Key: thumbnailKey}).promise();
     await s3.deleteObject({Bucket: bucket, Key: videoKey}).promise();
 
-    const putResult = await s3.putObject({
+    const key = 'db.json'; // Define the key variable for the putObject method
+    await s3.putObject({
       Bucket: bucket,
       Key: key,
       Body: JSON.stringify(dbContent),
@@ -54,8 +55,8 @@ export default async function handler(req, res) {
     }).promise();
     res.status(200).json({success: true});
   } catch (e) {
-    console.log("save db error", e);
-    res.status(200).json({success: false});
+    console.log("Error during video deletion or saving db:", e); // Improved logging
+    res.status(500).json({success: false, error: e.message}); // Changed status code to 500 for errors
     return;
   }
 }
